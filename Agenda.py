@@ -110,7 +110,7 @@ class Window(QWidget):
 
 	def import_tasks(self):
 		for file in os.listdir():
-			if os.path.isfile(file):
+			if os.path.isfile(file) and file!='Agenda.py':
 				self.addTask_lineEdit.setText(file)
 				self.add_task()
 				
@@ -127,20 +127,21 @@ class Window(QWidget):
 			return quotes
 
 	def import_tasks_file(self):
-		tasks = self.get_tasks()
-		for task in tasks:
-			if task != '\n':
-				self.addTask_lineEdit.setText(task)
-				self.add_task()
+		if os.path.isfile('tasks.txt'):
+			tasks = self.get_tasks()
+			for task in tasks:
+				if task != '\n':
+					self.addTask_lineEdit.setText(task)
+					self.add_task()
+		
 
 	def get_tasks(self):
-		if os.path.isfile('tasks.txt'):
-			with open('tasks.txt','r') as file:
-				tasks = []
-				for line in file:
-					tasks.append(line)
-			file.close()
-			return tasks
+		with open('tasks.txt','r') as file:
+			tasks = []
+			for line in file:
+				tasks.append(line)
+		file.close()
+		return tasks
 	def clear_all(self):
 		subprocess.Popen(['python', 'agenda.py'])
 		sys.exit()
