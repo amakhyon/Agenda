@@ -71,13 +71,14 @@ class Window(QWidget):
 		self.add_to_file(label.text())
 
 	def add_to_file(self,task):
-		file = open('tasks.txt','r')
-		lines = file.readlines()
-		file.close()
 		duplicate = False
-		for line in lines:
-			if line==task:
-				duplicate = True
+		if os.path.isfile('tasks.txt'):
+			file = open('tasks.txt','r')
+			lines = file.readlines()
+			file.close()
+			for line in lines:
+				if line==task:
+					duplicate = True
 		if not duplicate:
 			file = open('tasks.txt','a')
 			file.write(task + '\n')
