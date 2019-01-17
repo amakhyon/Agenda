@@ -122,6 +122,9 @@ class Window(QWidget):
 					quotes.append(line)
 			file.close()
 			return quotes
+		else:
+			quotes = ['Every moment is a fresh beginning. – T.S Eliot','Yesterday you said tomorrow. Just do it. – Nike','All limitations are self-imposed. – Oliver Wendell Holmes']
+			return quotes
 
 	def import_tasks_file(self):
 		tasks = self.get_tasks()
