@@ -1,4 +1,4 @@
-#this program was written by Assem Makhyon and is free for all 
+
 
 import os
 import sys
